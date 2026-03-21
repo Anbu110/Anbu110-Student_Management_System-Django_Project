@@ -1,0 +1,31 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   
+</body>
+</html> -->
+
+
+
+{% extends 'base.html'%}
+
+{% block content %}
+
+<div class="container">
+    <h2>STUDENT FORM</h2>
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{student_form}}
+        <br>
+        <input type="submit" value="Add Student" class="btn btn-success">
+    </form>
+</div>
+
+
+{% endblock %}

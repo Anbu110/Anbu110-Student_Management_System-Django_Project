@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container py-3">
+
+    <!-- Welcome Section -->
+    <div class="mb-3">
+        <h4 class="fw-bold">Welcome, {{ request.user.username }} 👋</h4>
+        <p class="text-muted mb-0 fw-bold" style="font-size: 14px; font:bold">Student Management Dashboard</p>
+    </div>
+
+    <!-- Cards Row -->
+    <div class="row g-3">
+
+        <!-- Total Students -->
+        <div class="col-md-4">
+            <div class="card shadow border-0 p-3 text-center">
+                <h6>Total Students</h6>
+                <h3 class="fw-bold">{{ total_students }}</h3>
+            </div>
+        </div>
+
+        <!-- Add Student -->
+        <div class="col-md-4">
+            <div class="card shadow border-0 p-3 text-center">
+                <h6>Add New Student</h6>
+                <a href="/students/students_add/" class="btn btn-primary btn-sm mt-2">Add</a>
+            </div>
+        </div>
+
+        <!-- View Students -->
+        <div class="col-md-4">
+            <div class="card shadow border-0 p-3 text-center">
+                <h6>View Students</h6>
+                <a href="/students/students/" class="btn btn-success btn-sm mt-2">View</a>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- Department Wise Count -->
+    <div class="mt-4">
+        <h5 class="fw-bold">Department Wise Students</h5>
+
+        <div class="row g-3 mt-2">
+            {% for dept in department_data %}
+            <div class="col-md-4">
+                <div class="card shadow border-0 p-3 text-center">
+                    <h6>{{ dept.Department }}</h6>
+                    <h4 class="fw-bold">{{ dept.total }}</h4>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

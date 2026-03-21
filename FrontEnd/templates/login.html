@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    .login-page {
+        min-height: calc(100vh - 70px); /* FIXED */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #89f7fe, #66a6ff);
+    }
+
+    .login-card {
+        width: 400px;
+        border-radius: 12px;
+    }
+</style>
+
+<div class="login-page">
+
+    <div class="card shadow p-4 login-card">
+
+        <h3 class="text-center mb-4">🔐 Login</h3>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <div class="mb-3">
+                <label class="form-label">Username</label>
+                <input type="text" name="username" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Password</label>
+                <input type="password" name="password" class="form-control" required>
+            </div>
+
+            <p style="color: red;">{{ error }}</p>
+
+            <button type="submit" class="btn btn-dark w-100">Login</button>
+        </form>
+
+        {% if form.errors %}
+            <div class="alert alert-danger mt-3">
+                Invalid username or password 
+            </div>
+        {% endif %}
+
+        <p class="text-center mt-3">
+            Don't have an account? 
+            <a href="{% url 'signup' %}">Signup</a>
+        </p>
+
+    </div>
+
+</div>
+
+{% endblock %}

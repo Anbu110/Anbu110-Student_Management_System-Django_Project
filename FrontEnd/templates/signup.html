@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="d-flex justify-content-center align-items-center" 
+     style="height: calc(100vh - 70px); margin: 0;
+      background: linear-gradient(135deg, #74ebd5, #ACB6E5);">
+
+    <div class="card border-0 shadow p-3" 
+         style="width: 340px; border-radius: 12px;">
+        
+        <!-- Title -->
+        <h5 class="text-center mb-1 fw-bold">Create Account</h5>
+        <p class="text-center text-muted mb-2" style="font-size: 13px;">
+            Sign up to continue
+        </p>
+
+        <form method="POST">
+            {% csrf_token %}
+            
+            <!-- Username -->
+            <div class="mb-1">
+                <input type="text" name="username" 
+                       class="form-control form-control-sm" 
+                       placeholder="Username" required>
+            </div>
+
+            <!-- Email -->
+            <div class="mb-1">
+                <input type="email" name="email" 
+                       class="form-control form-control-sm" 
+                       placeholder="Email" required>
+            </div>
+
+            <!-- Password -->
+            <div class="mb-1">
+                <input type="password" name="password" 
+                       class="form-control form-control-sm" 
+                       placeholder="Password" required>
+            </div>
+
+            <!-- Confirm Password -->
+            <div class="mb-2">
+                <input type="password" name="confirm_password" 
+                       class="form-control form-control-sm" 
+                       placeholder="Confirm Password" required>
+            </div>
+            <p style="color: red;">{{error}}</p>
+            <!-- Button -->
+            <div class="d-grid">
+                <button type="submit" 
+                        class="btn btn-primary btn-sm rounded-pill">
+                    Signup
+                </button>
+            </div>
+        </form>
+
+        <!-- Messages -->
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-info mt-2 p-1 text-center" 
+                     style="font-size: 12px;">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <!-- Login Link -->
+        <p class="text-center mt-1 mb-0" style="font-size: 13px;">
+            Already have an account?
+            <a href="/" class="fw-semibold text-decoration-none">Login</a>
+        </p>
+
+    </div>
+
+</div>
+
+{% endblock %}

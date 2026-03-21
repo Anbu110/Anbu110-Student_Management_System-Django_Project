@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+
+
+
+
+
+
+<h2>ALL STUDENTS</h2>
+
+<div class="top-contain">
+    <form method="GET" class="search-box">
+
+
+        <input type="text" name="q" placeholder="Search name" value="{{ query|default:'' }}">
+
+
+        <select name="dept">
+            <option value="">All Departments</option>
+
+            <option value="CSE" {% if dept == "CSE" %}selected{% endif %}>CSE</option>
+            <option value="IT" {% if dept == "IT" %}selected{% endif %}>IT</option>
+            <option value="ECE" {% if dept == "ECE" %}selected{% endif %}>ECE</option>
+            <option value="EEE" {% if dept == "EEE" %}selected{% endif %}>EEE</option>
+            <option value="CIVIL" {% if dept == "CIVIL" %}selected{% endif %}>CIVIL</option>
+            <option value="MECH" {% if dept == "MECH" %}selected{% endif %}>MECH</option>
+
+
+        </select>
+
+        <button type="submit">Search</button>
+
+        <a href="{% url 'all_students' %}" class="clear-btn">Clear</a>
+
+    </form>
+    <br>
+    <!-- add new student button -->
+    {% if request.user.is_staff %}
+    <a href="/students/students_add/">
+        <button class="btn btn-success" style="margin-right: 50px;">Add New Student</button>
+    </a>
+    {% endif %}
+</div>
+
+
+
+
+{% if messages %}
+{% for message in messages %}
+<div class="message-box"
+    style="background-color:#ece35c; color:#155724; padding:8px; border-radius:5px; margin:10px 0; margin-left:70px; ">
+    {{ message }}
+</div>
+{% endfor %}
+{% endif %}
+
+<div class="table-wrapper">
+    <table>
+        <thead>
+            <tr>
+                <th>S.No</th>
+                <th>Student_Name</th>
+                <th>Age</th>
+                <th>Department</th>
+                <th>Email</th>
+                <th>Joining_Date</th>
+                {% if request.user.is_staff %}
+                <th>Update</th>
+                <th>Delete</th>
+                {% endif %}
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for student in all_students %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{student.Name}}</td>
+                <td>{{student.Age}}</td>
+                <td>{{student.Department}}</td>
+                <td>{{student.Email}}</td>
+                <td>{{student.Join_Date}}</td>
+
+                {% if request.user.is_staff %}
+                <td>
+                    <a href="{% url 'update_student' student.id %}">
+                        <button class="btn btn-primary">Update</button>
+                    </a>
+                </td>
+
+                <td>
+                    <a href="{% url 'delete_student' student.id %}">
+                        <button class="btn btn-danger">Delete</button>
+                    </a>
+                </td>
+                {% endif %}
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+{% if not all_students %}
+<p style="color:red;">No students found for "{{ query }}"</p>
+{% endif %}
+<br>
+
+
+<div style="margin-top:20px;" class="pagination">
+
+    {% if all_students.has_previous %}
+    <a
+        href="?page={{ all_students.previous_page_number }}{% if query %}&q={{ query }}{% endif %}{% if dept %}&dept={{ dept }}{% endif %}">
+        Previous
+    </a>
+    {% endif %}
+
+    <span> Page {{ all_students.number }} of {{ all_students.paginator.num_pages }} </span>
+
+    {% if all_students.has_next %}
+    <a
+        href="?page={{ all_students.next_page_number }}{% if query %}&q={{ query }}{% endif %}{% if dept %}&dept={{ dept }}{% endif %}">
+        Next
+    </a>
+    {% endif %}
+
+</div>
+<!-- Number buttons -->
+
+<div class="page-numbers">
+    {% for num in all_students.paginator.page_range %}
+    <a href="?page={{ num }}{% if query %}&q={{ query }}{% endif %}{% if dept %}&dept={{ dept }}{% endif %}">
+        {{ num }}
+    </a>
+    {% endfor %}
+</div>
+
+
+
+
+
+
+{% endblock %}
