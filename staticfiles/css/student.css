@@ -1,0 +1,235 @@
+/* ===== Global ===== */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #f4f7fb;
+    margin: 0;
+    padding: 0;
+}
+
+/* ===== Heading ===== */
+h2 {
+    text-align: center;
+    margin-top: 20px;
+    color: #2c3e50;
+}
+
+/* ===== Top Section ===== */
+.top-contain {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 40px;
+    flex-wrap: wrap;
+}
+
+/* ===== Search Box ===== */
+.search-box {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-left: 30px;
+}
+
+.search-box input,
+.search-box select {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    outline: none;
+    transition: 0.3s;
+}
+
+.search-box input:focus,
+.search-box select:focus {
+    border-color: #3498db;
+}
+
+/* ===== Buttons ===== */
+button {
+    padding: 8px 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* Search Button */
+.search-box button {
+    background: #3498db;
+    color: white;
+
+}
+
+.search-box button:hover {
+    background: #2980b9;
+}
+
+/* Clear Button */
+.clear-btn {
+    background: #e74c3c;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+}
+
+.clear-btn:hover {
+    background: #c0392b;
+}
+
+/* Add Button */
+.add-btn {
+    background: #2ecc71;
+    color: white;
+    margin-right: 70px ;
+}
+
+.add-btn:hover {
+    background: #27ae60;
+}
+
+
+
+
+/* ===== Table ===== */
+
+table {
+    width: 90%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    font-family: 'Segoe UI', sans-serif;
+    border-radius: 5px;
+}
+
+/* ===== Header ===== */
+thead {
+   
+    background-color: rgb(243, 243, 190);
+}
+tbody{
+    background-color: rgb(152, 248, 203);
+}
+
+th {
+    padding: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-align: center;
+    color: black;
+}
+
+
+/* ===== Table Body ===== */
+
+td {
+    padding: 10px;
+    color: #333;
+    font-size: 16px;
+    text-align: center;
+    /* background-color: #5df0b3; */
+    font-size: bold;
+}
+
+
+/* ===== Borders ===== */
+
+th, td {
+    border-bottom: 0.5px solid #e3e6f0;
+}
+
+
+/* ===== Rounded corners fix for header ===== */
+thead tr th:first-child {
+    border-top-left-radius: 15px;
+}
+
+thead tr th:last-child {
+    border-top-right-radius: 15px;
+} 
+
+
+table.table thead tr th {
+    color: black !important;
+    
+}
+
+
+
+/* ===== Messages ===== */
+.message-box {
+    width: 90%;
+    margin: 10px auto;
+    text-align: center;
+    font-weight: 500;
+}
+
+
+
+/* ===== Pagination ===== */
+.pagination {
+    display: flex;
+    justify-content: center;  
+    align-items: center;
+    gap: 10px;                 
+    transform: translateY(-35px);
+}
+
+.pagination a {
+    padding: 3px 6px;
+    background: #3498db;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.pagination a:hover {
+    background: #2980b9;
+}
+
+.pagination span {
+    margin: 0 10px;
+    font-weight: bold;
+}
+
+
+
+/* page Number */
+
+.page-numbers {
+    text-align: center;
+    margin-top: -35px;  
+}
+
+.page-numbers a {
+    padding: 3px 7px;
+    margin: 2px;
+    color: black;
+    border-radius: 3px;
+    text-decoration: none;
+}
+
+.page-numbers a:hover {
+    background: #95a5a6;
+}
+
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+    .top-contain {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    table {
+        width: 100%;
+        font-size: 12px;
+    }
+
+    .search-box {
+        width: 100%;
+    }
+}
