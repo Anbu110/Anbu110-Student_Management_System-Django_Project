@@ -133,14 +133,41 @@
 </div>
 <!-- Number buttons -->
 
-<div class="page-numbers">
+<!-- <div class="page-numbers">
+    
+    
     {% for num in all_students.paginator.page_range %}
     <a href="?page={{ num }}{% if query %}&q={{ query }}{% endif %}{% if dept %}&dept={{ dept }}{% endif %}">
         {{ num }}
     </a>
     {% endfor %}
-</div>
 
+        
+
+</div> -->
+
+
+<div class="page-numbers">
+
+    {% for num in all_students.paginator.page_range %}
+
+        {% if num == 1 or num == all_students.paginator.num_pages or num >= all_students.number|add:-1 and num <= all_students.number|add:1 %}
+
+            {% if num == all_students.number %}
+                <strong>{{ num }}</strong>
+            {% else %}
+                <a href="?page={{ num }}{% if query %}&q={{ query }}{% endif %}{% if dept %}&dept={{ dept }}{% endif %}">
+                    {{ num }}
+                </a>
+            {% endif %}
+
+        {% elif num == all_students.number|add:-2 or num == all_students.number|add:2 %}
+            ...
+        {% endif %}
+
+    {% endfor %}
+
+</div>
 
 
 

@@ -175,7 +175,7 @@ table.table thead tr th {
     justify-content: center;  
     align-items: center;
     gap: 10px;                 
-    transform: translateY(-35px);
+    transform: translateY(-45px);
 }
 
 .pagination a {
